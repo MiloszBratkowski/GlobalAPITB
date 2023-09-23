@@ -1,0 +1,17 @@
+# GlobalNetwork module
+# This module allows you to send messages (objects) between servers independently of other proxies.
+# To connect servers into a network, assign a port under which the plugin will receive sent packets
+# and enter a list of servers with the IP address and port assigned in the plugin config on another server,
+# data will be sent to these addresses.
+# Pattern for assigning a server to a server list: name@host:port
+#
+# ATTENTION! PORTS MUST BE FREE, I.E. NO SERVICES CAN USE THESE PORTS - THEY ARE RESERVED ONLY FOR COMMUNICATION VIA THIS PLUGIN.
+# THIS MEANS THAT YOU CANNOT ASSIGN A PORT HERE, E.G. YOUR SERVER.
+
+global_network_server_port: 30001
+
+server_list:
+  - lobby@localhost:30002
+  - oneblock@localhost:30003
+  - skyblock@localhost:30004
+  - pvp@localhost:30005

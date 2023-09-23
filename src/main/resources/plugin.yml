@@ -4,4 +4,4 @@ main: pl.techbrat.spigot.globalapitb.GlobalAPITB
 api-version: 1.13
 load: STARTUP
 authors: [TechBrat]
-description: desc
+description: This plugin provides many different modules that make other plugins easier and more efficient.

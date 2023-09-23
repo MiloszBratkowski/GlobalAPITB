@@ -6,10 +6,8 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
 
-public class ClientEngine {
+public class SenderModule {
     private GlobalAPITB plugin;
 
 
@@ -18,7 +16,7 @@ public class ClientEngine {
 
     private Socket socket;
 
-    public ClientEngine(int port, String host) {
+    public SenderModule(int port, String host) {
         this.port = port;
         this.host = host;
         this.plugin = GlobalAPITB.getPlugin();
@@ -38,7 +36,7 @@ public class ClientEngine {
         });
     }
 
-    public void sendData(Object data) {
+    public void sendData(DataPacket data) {
         try {
             if (socket.isClosed()) socket = new Socket(host, port);
             OutputStream outputStream = socket.getOutputStream();
@@ -50,6 +48,7 @@ public class ClientEngine {
         } catch (IOException e) {
             plugin.getLogger().severe("Data hasn't been sent!");
             plugin.getLogger().severe("Info: "+e.getMessage());
+            e.printStackTrace();
         }
     }
 

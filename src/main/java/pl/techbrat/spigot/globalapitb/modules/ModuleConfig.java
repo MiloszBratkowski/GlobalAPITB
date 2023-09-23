@@ -1,6 +1,7 @@
-package pl.techbrat.spigot.globalapitb;
+package pl.techbrat.spigot.globalapitb.modules;
 
 import org.bukkit.configuration.file.YamlConfiguration;
+import pl.techbrat.spigot.globalapitb.GlobalAPITB;
 
 import java.io.File;
 import java.nio.file.Files;

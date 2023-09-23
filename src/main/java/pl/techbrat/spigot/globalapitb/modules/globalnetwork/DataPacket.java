@@ -1,6 +1,5 @@
-package pl.techbrat.spigot.globalapitb.globalnetwork;
+package pl.techbrat.spigot.globalapitb.modules.globalnetwork;
 
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.Serializable;

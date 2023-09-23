@@ -13,5 +13,5 @@ global_network_server_port: 30001
 server_list:
   - lobby@localhost:30002
   - oneblock@localhost:30003
-  - skyblock@localhost:30004
+  - skyblock@localhost:30001
   - pvp@localhost:30005

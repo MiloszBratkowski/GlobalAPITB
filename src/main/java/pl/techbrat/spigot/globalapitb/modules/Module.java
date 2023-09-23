@@ -1,4 +1,4 @@
-package pl.techbrat.spigot.globalapitb;
+package pl.techbrat.spigot.globalapitb.modules;
 
 public class Module {
 

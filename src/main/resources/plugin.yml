@@ -5,3 +5,11 @@ api-version: 1.13
 load: STARTUP
 authors: [TechBrat]
 description: This plugin provides many different modules that make other plugins easier and more efficient.
+commands:
+  globalapitb:
+    aliases:
+      - globalapi
+      - gapitb
+      - gapi
+    usage: Type /globalapi help
+    permission: globalpitb.command

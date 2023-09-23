@@ -1,7 +1,9 @@
 package pl.techbrat.spigot.globalapitb;
 
+import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
-import pl.techbrat.spigot.globalapitb.globalnetwork.GlobalNetwork;
+import pl.techbrat.spigot.globalapitb.commands.GlobalApiTBCommand;
+import pl.techbrat.spigot.globalapitb.modules.globalnetwork.GlobalNetwork;
 
 public final class GlobalAPITB extends JavaPlugin {
 
@@ -17,8 +19,9 @@ public final class GlobalAPITB extends JavaPlugin {
 
         config = new ConfigData();
 
-        System.out.println("Enabling modules...");
+        getCommand("globalapitb").setExecutor(new GlobalApiTBCommand());
 
+        System.out.println("Enabling modules...");
         if (config.getModule("global_network")) globalNetwork = new GlobalNetwork();
     }
 
@@ -43,6 +46,9 @@ public final class GlobalAPITB extends JavaPlugin {
 
     public void debug(String log) {
         if (ConfigData.getInstance().isDebugEnabled()) getPlugin().getLogger().info(log);
+    }
+    public void sendMessage(CommandSender receiver, String msg) {
+        receiver.sendMessage(msg);
     }
 
     public void stopPlugin() {

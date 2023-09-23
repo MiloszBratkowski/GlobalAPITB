@@ -1,4 +1,4 @@
-package pl.techbrat.spigot.globalapitb.globalnetwork;
+package pl.techbrat.spigot.globalapitb.modules.globalnetwork;
 
 import pl.techbrat.spigot.globalapitb.GlobalAPITB;
 
@@ -39,17 +39,20 @@ public class ReceiverModule {
                     plugin.debug("Waiting for data packets...");
                     try {
                         socket = serverSocket.accept();
-                        plugin.debug("Received data from " + socket);
                         inputStream = socket.getInputStream();
-                        objectInputStream = new ObjectInputStream(inputStream);
-                        dataPacket = (DataPacket) objectInputStream.readObject();
-                        for (ReceiverListener listener : listeners) {
-                            listener.receivePacketEvent(dataPacket);
+                        if (inputStream != null) {
+                            objectInputStream = new ObjectInputStream(inputStream);
+                            dataPacket = (DataPacket) objectInputStream.readObject();
+                            plugin.debug("Received data from " + socket);
+                            for (ReceiverListener listener : listeners) {
+                                listener.receivePacketEvent(dataPacket);
+                            }
                         }
                         socket.close();
-                    } catch (ClassNotFoundException e) {
+                    } catch (Exception e) {
                         plugin.getLogger().severe("An error occurred while receiving the packet!");
-                        plugin.getLogger().severe("Info: "+e.getLocalizedMessage());
+                        plugin.getLogger().severe("Info:");
+                        e.printStackTrace();
                     }
                 }
             } catch (IOException e) {

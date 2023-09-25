@@ -23,7 +23,7 @@ public class ReceiverModule {
 
     private ServerSocket serverSocket;
 
-    public ReceiverModule(int port) {
+    ReceiverModule(int port) {
         this.port = port;
         this.plugin = GlobalAPITB.getPlugin();
         server();
@@ -72,7 +72,7 @@ public class ReceiverModule {
         });
     }
 
-    public void close() {
+    void close() {
         if (task != null && !task.isCancelled()) {
             task.cancel();
         }

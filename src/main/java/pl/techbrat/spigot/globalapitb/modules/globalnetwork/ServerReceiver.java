@@ -19,17 +19,17 @@ public class ServerReceiver {
     private String host;
     private int port;
 
-    public ServerReceiver(String name, String host, int port) {
+    ServerReceiver(String name, String host, int port) {
         this.name = name;
         this.host = host;
         this.port = port;
     }
 
-    public void register() {
+    void register() {
         serverslist.put(name, this);
     }
 
-    public void unregister() {
+    void unregister() {
         serverslist.remove(name);
     }
 
@@ -46,7 +46,7 @@ public class ServerReceiver {
     }
 
 
-    public static void unregisterAll() {
+    static void unregisterAll() {
         serverslist.clear();
     }
 }

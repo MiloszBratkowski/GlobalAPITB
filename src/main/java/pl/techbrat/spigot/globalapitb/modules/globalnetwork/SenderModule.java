@@ -13,7 +13,7 @@ public class SenderModule {
 
     private Socket socket;
 
-    public SenderModule() {
+    SenderModule() {
         this.plugin = GlobalAPITB.getPlugin();
     }
 
@@ -47,7 +47,7 @@ public class SenderModule {
     }
 
 
-    public void close() {
+    void close() {
         try {
             if (socket != null && !socket.isClosed()) socket.close();
         } catch (IOException e) {

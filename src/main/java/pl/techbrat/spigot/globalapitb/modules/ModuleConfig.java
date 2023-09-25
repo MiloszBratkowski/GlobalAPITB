@@ -21,7 +21,7 @@ public class ModuleConfig {
     private final HashMap<String, Object> defaultConfig;
     private final HashMap<String, Object> config;
 
-    public ModuleConfig(String moduleName) {
+    protected ModuleConfig(String moduleName) {
         if (!modulesDirectory.exists() || !modulesDirectory.isDirectory()) {
             modulesDirectory.mkdir();
         }

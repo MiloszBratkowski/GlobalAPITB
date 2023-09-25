@@ -7,7 +7,7 @@ public class GlobalNetworkCommands {
     private final GlobalAPITB plugin = GlobalAPITB.getPlugin();
     private final GlobalNetwork globalNetwork;
 
-    public GlobalNetworkCommands(GlobalNetwork globalNetwork) {
+    protected GlobalNetworkCommands(GlobalNetwork globalNetwork) {
         this.globalNetwork = globalNetwork;
     }
     public void info(CommandSender sender, String aliasCmd) {

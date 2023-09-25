@@ -4,6 +4,8 @@ import org.bukkit.command.CommandSender;
 import pl.techbrat.spigot.globalapitb.ConfigData;
 import pl.techbrat.spigot.globalapitb.GlobalAPITB;
 import pl.techbrat.spigot.globalapitb.modules.globalnetwork.GlobalNetwork;
+import pl.techbrat.spigot.globalapitb.modules.serverfunctions.ServerFunctions;
+import pl.techbrat.spigot.globalapitb.modules.textformatter.TextFormatter;
 
 import java.util.*;
 
@@ -12,12 +14,14 @@ public class ModulesManager {
 
     private final HashMap<String, Module> modules = new HashMap<>();
 
-    private final List<String> allModules = new ArrayList<>(Collections.singletonList("global_network"));
+    private final List<String> allModules = new ArrayList<>(Arrays.asList("global_network", "text_formatter", "server_functions"));
 
     public ModulesManager() {
         ConfigData config = plugin.getConfiguration();
         plugin.getLogger().info("Enabling modules...");
         if (config.getModule("global_network")) modules.put("global_network", new GlobalNetwork());
+        if (config.getModule("text_formatter")) modules.put("text_formatter", new TextFormatter());
+        if (config.getModule("server_functions")) modules.put("server_functions", new ServerFunctions());
     }
 
     public void closeAll() {

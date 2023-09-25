@@ -9,7 +9,7 @@ public class Module {
     private ModuleConfig config = null;
     private final String moduleName;
 
-    public Module(String moduleName) {
+    protected Module(String moduleName) {
         plugin.getLogger().info("Enabling "+moduleName+" module.");
         this.moduleName = moduleName;
         reload();
@@ -23,11 +23,11 @@ public class Module {
         return moduleName;
     }
 
-    public void reload() {
+    protected void reload() {
         config = new ModuleConfig(moduleName);
     }
 
-    public void close() {
+    protected void close() {
         plugin.getLogger().info("Disabling "+moduleName+" module.");
     }
 }

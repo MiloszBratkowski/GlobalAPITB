@@ -19,7 +19,9 @@ public class GlobalAPITBTabCompleter implements TabCompleter {
         if (arg.length == 1) StringUtil.copyPartialMatches(arg[0], Arrays.asList("module", "reload", "help"), completions);
         else if (arg.length == 2) {
             if (arg[0].equals("module")) {
-                StringUtil.copyPartialMatches(arg[1], plugin.getModulesManager().getAllModules(), completions);
+                List<String> subCmd = plugin.getModulesManager().getAllModules();
+                subCmd.addAll(Arrays.asList("list", "help"));
+                StringUtil.copyPartialMatches(arg[1], subCmd, completions);
             }
         } else if (arg.length == 3) {
             if (arg[0].equals("module")) {

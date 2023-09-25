@@ -2,3 +2,4 @@ debug: true
 
 modules:
   global_network: true
+  text_formatter: false

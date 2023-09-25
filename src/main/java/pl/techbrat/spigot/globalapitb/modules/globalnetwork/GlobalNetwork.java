@@ -4,23 +4,16 @@ import pl.techbrat.spigot.globalapitb.GlobalAPITB;
 import pl.techbrat.spigot.globalapitb.modules.Module;
 
 public class GlobalNetwork extends Module {
-    private GlobalAPITB plugin;
 
-    private final ReceiverModule receiver;
-    private final SenderModule sender;
+    private ReceiverModule receiver;
+    private SenderModule sender;
+
+    private final GlobalNetworkCommands commands;
 
     public GlobalNetwork() {
         super("global_network");
-        this.plugin = GlobalAPITB.getPlugin();
 
-        reloadConfig();
-
-        plugin.getLogger().info("Enabling global_network module.");
-
-        receiver = new ReceiverModule(getConfig().getConfigInt("global_network_server_port"));
-        sender = new SenderModule();
-        loadServerReceivers();
-
+        commands = new GlobalNetworkCommands(this);
     }
 
     private void loadServerReceivers() {
@@ -33,11 +26,6 @@ public class GlobalNetwork extends Module {
         }
     }
 
-    public void close() {
-        receiver.close();
-        sender.close();
-    }
-
     public ReceiverModule getReceiver() {
         return receiver;
     }
@@ -46,9 +34,26 @@ public class GlobalNetwork extends Module {
         return sender;
     }
 
+    public GlobalNetworkCommands getCommands() {
+        return commands;
+    }
+
     @Override
-    public void reloadConfig() {
-        super.reloadConfig();
+    public void reload() {
+        super.reload();
+        if (receiver != null) receiver.close();
+        if (sender != null) sender.close();
+        ServerReceiver.unregisterAll();
+        receiver = new ReceiverModule(getConfig().getConfigInt("global_network_server_port"));
+        sender = new SenderModule();
         loadServerReceivers();
+    }
+
+    @Override
+    public void close() {
+        super.close();
+        receiver.close();
+        sender.close();
+        ServerReceiver.unregisterAll();
     }
 }

@@ -44,4 +44,9 @@ public class ServerReceiver {
     public int getPort() {
         return port;
     }
+
+
+    public static void unregisterAll() {
+        serverslist.clear();
+    }
 }

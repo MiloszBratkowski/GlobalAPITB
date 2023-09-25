@@ -41,7 +41,7 @@ public class ModuleConfig {
         }
         defaultConfig = (HashMap<String, Object>)YamlConfiguration.loadConfiguration(temp).getConfigurationSection("").getValues(true);
         temp.delete();
-        plugin.getLogger().log(Level.INFO, moduleName+" module's config file loaded.");
+        plugin.debug(moduleName+" module's config file loaded.");
 
     }
 

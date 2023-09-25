@@ -1,16 +1,17 @@
 package pl.techbrat.spigot.globalapitb;
 
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
-import pl.techbrat.spigot.globalapitb.commands.GlobalApiTBCommand;
-import pl.techbrat.spigot.globalapitb.modules.globalnetwork.GlobalNetwork;
+import pl.techbrat.spigot.globalapitb.commands.GlobalAPITBCommand;
+import pl.techbrat.spigot.globalapitb.commands.GlobalAPITBTabCompleter;
+import pl.techbrat.spigot.globalapitb.modules.ModulesManager;
 
 public final class GlobalAPITB extends JavaPlugin {
 
     private static GlobalAPITB plugin;
 
-    private static GlobalNetwork globalNetwork;
-
+    private ModulesManager modulesManager;
     private ConfigData config;
 
     @Override
@@ -19,36 +20,38 @@ public final class GlobalAPITB extends JavaPlugin {
 
         config = new ConfigData();
 
-        getCommand("globalapitb").setExecutor(new GlobalApiTBCommand());
+        modulesManager = new ModulesManager();
 
-        System.out.println("Enabling modules...");
-        if (config.getModule("global_network")) globalNetwork = new GlobalNetwork();
+        getCommand("globalapitb").setExecutor(new GlobalAPITBCommand());
+        getCommand("globalapitb").setTabCompleter(new GlobalAPITBTabCompleter());
     }
 
     @Override
     public void onDisable() {
-        if (isGlobalNetworkEnabled()) globalNetwork.close();
+        modulesManager.closeAll();
     }
 
-
-    public boolean isGlobalNetworkEnabled() {
-        return globalNetwork != null;
+    public void reload() {
+        debug("Starting reloading...");
+        modulesManager.closeAll();
+        config = new ConfigData();
+        modulesManager = new ModulesManager();
     }
-
-    public GlobalNetwork getGlobalNetwork() {
-        return globalNetwork;
-    }
-
 
     public ConfigData getConfiguration() {
         return config;
     }
 
-    public void debug(String log) {
-        if (ConfigData.getInstance().isDebugEnabled()) getPlugin().getLogger().info(log);
+    public ModulesManager getModulesManager() {
+        return modulesManager;
     }
-    public void sendMessage(CommandSender receiver, String msg) {
-        receiver.sendMessage(msg);
+
+    public void debug(String log) {
+        if (ConfigData.getInstance().isDebugEnabled()) getPlugin().getLogger().info("[DEBUG] "+log);
+    }
+    public void sendMessage(boolean prefix, CommandSender receiver, String msg) {
+        if (prefix) msg = "&7[&3GlobalAPI&bTB&7] "+msg;
+        receiver.sendMessage(ChatColor.translateAlternateColorCodes('&', msg));
     }
 
     public void stopPlugin() {

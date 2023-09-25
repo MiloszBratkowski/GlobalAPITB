@@ -1,5 +1,6 @@
 package pl.techbrat.spigot.globalapitb.modules.globalnetwork;
 
+import org.bukkit.scheduler.BukkitTask;
 import pl.techbrat.spigot.globalapitb.GlobalAPITB;
 
 import java.io.IOException;
@@ -14,6 +15,8 @@ public class ReceiverModule {
 
     private final GlobalAPITB plugin;
 
+    private BukkitTask task;
+
     private final List<ReceiverListener> listeners = new ArrayList<ReceiverListener>();
 
     private final int port;
@@ -27,7 +30,7 @@ public class ReceiverModule {
     }
 
     private void server() {
-        plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> {
+        task = plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> {
             plugin.debug("Registering receiver on port "+port+"...");
             try {
                 serverSocket = new ServerSocket(port);
@@ -35,39 +38,51 @@ public class ReceiverModule {
                 InputStream inputStream;
                 ObjectInputStream objectInputStream;
                 DataPacket dataPacket;
-                while (true) {
+                plugin.debug("Receiver registered.");
+                while (serverSocket != null && !serverSocket.isClosed()) {
                     plugin.debug("Waiting for data packets...");
                     try {
                         socket = serverSocket.accept();
                         inputStream = socket.getInputStream();
-                        if (inputStream != null) {
-                            objectInputStream = new ObjectInputStream(inputStream);
-                            dataPacket = (DataPacket) objectInputStream.readObject();
+                        objectInputStream = new ObjectInputStream(inputStream);
+                        dataPacket = (DataPacket) objectInputStream.readObject();
+                        if (!dataPacket.getLabel().equals("ping")) {
                             plugin.debug("Received data from " + socket);
                             for (ReceiverListener listener : listeners) {
                                 listener.receivePacketEvent(dataPacket);
                             }
+                        } else {
+                            plugin.debug("Received ping from another server by plugin: " + socket);
                         }
                         socket.close();
-                    } catch (Exception e) {
-                        plugin.getLogger().severe("An error occurred while receiving the packet!");
-                        plugin.getLogger().severe("Info:");
-                        e.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                        if (!task.isCancelled()) {
+                            plugin.getLogger().severe("An error occurred while receiving the packet!");
+                            plugin.getLogger().severe("Info: "+e.getLocalizedMessage());
+                        }
                     }
                 }
             } catch (IOException e) {
-                plugin.getLogger().severe("Receiver hasn't been registered!");
-                plugin.getLogger().severe("Info: "+e.getLocalizedMessage());
+                if (!task.isCancelled()) {
+                    plugin.getLogger().severe("Receiver hasn't been registered!");
+                    plugin.getLogger().severe("Info: " + e.getLocalizedMessage());
+                    plugin.getModulesManager().close(plugin.getModulesManager().getModule("global_network"));
+                }
             }
         });
     }
 
     public void close() {
-        try {
-            if (!serverSocket.isClosed()) serverSocket.close();
-        } catch (IOException e) {
-            plugin.getLogger().severe("Receiver hasn't been unregistered!");
-            plugin.getLogger().severe("Info: "+e.getMessage());
+        if (task != null && !task.isCancelled()) {
+            task.cancel();
+        }
+        if (serverSocket != null && !serverSocket.isClosed()) {
+            try {
+                serverSocket.close();
+            } catch (IOException e) {
+                plugin.getLogger().severe("Receiver hasn't been unregistered!");
+                plugin.getLogger().severe("Info: "+e.getMessage());
+            }
         }
     }
 

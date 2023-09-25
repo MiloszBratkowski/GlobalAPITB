@@ -19,7 +19,7 @@ public class SenderModule {
 
     public void sendData(DataPacket data, ServerReceiver serverReceiver) {
         try {
-            if (socket.isClosed()) socket = new Socket(serverReceiver.getHost(), serverReceiver.getPort());
+            if (socket == null || socket.isClosed()) socket = new Socket(serverReceiver.getHost(), serverReceiver.getPort());
             OutputStream outputStream = socket.getOutputStream();
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
             plugin.debug("Sending packet...");
@@ -29,16 +29,19 @@ public class SenderModule {
         } catch (IOException e) {
             plugin.getLogger().severe("Data hasn't been sent!");
             plugin.getLogger().severe("Info: "+e.getMessage());
-            e.printStackTrace();
         }
     }
 
     public boolean ping(ServerReceiver serverReceiver) {
         try {
-            socket = new Socket(serverReceiver.getHost(), serverReceiver.getPort());
-            socket.close();
+            if (socket == null || socket.isClosed()) socket = new Socket(serverReceiver.getHost(), serverReceiver.getPort());
+            OutputStream outputStream = socket.getOutputStream();
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+            objectOutputStream.writeObject(new DataPacket(plugin, "ping", null));
+            objectOutputStream.flush();
+            objectOutputStream.close();
             return true;
-        } catch (IOException e) {
+        } catch (Exception e) {
             return false;
         }
     }
@@ -46,7 +49,7 @@ public class SenderModule {
 
     public void close() {
         try {
-            if (!socket.isClosed()) socket.close();
+            if (socket != null && !socket.isClosed()) socket.close();
         } catch (IOException e) {
             plugin.getLogger().severe("Sender hasn't been unregistered!");
             plugin.getLogger().severe("Info: "+e.getMessage());

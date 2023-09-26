@@ -7,6 +7,10 @@ import pl.techbrat.spigot.globalapitb.GlobalAPITB;
 import pl.techbrat.spigot.globalapitb.modules.Module;
 import pl.techbrat.spigot.globalapitb.modules.ModulesManager;
 import pl.techbrat.spigot.globalapitb.modules.globalnetwork.GlobalNetwork;
+import pl.techbrat.spigot.globalapitb.modules.serverfunctions.ServerFunctions;
+import pl.techbrat.spigot.globalapitb.modules.textformatter.TextFormatter;
+
+import java.util.stream.Collectors;
 
 public class GlobalAPITBCommand implements CommandExecutor {
     private final GlobalAPITB plugin = GlobalAPITB.getPlugin();
@@ -39,6 +43,30 @@ public class GlobalAPITBCommand implements CommandExecutor {
                             }
                         } else {
                             globalNetwork.getCommands().help(sender, s);
+                        }
+                    }
+                    else if (module.getName().equals("server_functions")) {
+                        ServerFunctions serverFunctions = (ServerFunctions) module;
+                        if (arg.length >= 3) {
+                            if (arg[2].equals("info")) {
+                                serverFunctions.getCommands().info(sender);
+                            } else {
+                                serverFunctions.getCommands().help(sender, s);
+                            }
+                        } else {
+                            serverFunctions.getCommands().help(sender, s);
+                        }
+                    }
+                    else if (module.getName().equals("text_formatter")) {
+                        TextFormatter textFormatter = (TextFormatter) module;
+                        if (arg.length >= 3) {
+                            if (arg[2].equals("info")) {
+                                textFormatter.getCommands().info(sender);
+                            } else {
+                                textFormatter.getCommands().help(sender, s);
+                            }
+                        } else {
+                            textFormatter.getCommands().help(sender, s);
                         }
                     }
                 } else if (plugin.getModulesManager().getAllModules().contains(arg[1])) {

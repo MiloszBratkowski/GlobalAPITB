@@ -1,6 +1,6 @@
 debug: true
 
 modules:
-  global_network: true
-  text_formatter: false
-  server_functions: false
+  global_network: false
+  text_formatter: true
+  server_functions: true

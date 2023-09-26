@@ -11,7 +11,7 @@ public class TextFormatter extends Module {
     public TextFormatter() {
         super("text_formatter");
 
-        commands = new TextFormatterCommands(this);
+        commands = new TextFormatterCommands();
     }
 
     public ColorFormatter getColorFormatter() {

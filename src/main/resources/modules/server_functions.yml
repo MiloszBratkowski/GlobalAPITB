@@ -2,3 +2,19 @@
 # This module allows you to use custom functions operating on the server.
 # To check how to use these functions, go here:
 # https://github.com/MiloszBratkowski/GlobalAPITB
+
+storage_type: mysql
+
+table_prefix: ""
+table_suffix: ""
+
+storage:
+  sqlite:
+    filename: server_functions.db
+  mysql:
+    host: localhost
+    port: 3306
+    ssl: false
+    user: root
+    password: ""
+    database: test

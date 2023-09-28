@@ -29,8 +29,10 @@ public class GlobalAPITBTabCompleter implements TabCompleter {
             if (arg[0].equals("module")) {
                 if (arg[1].equals("global_network")) {
                     StringUtil.copyPartialMatches(arg[2], Arrays.asList("info", "test", "reload", "help"), completions);
-                } else if (arg[1].equals("server_functions") || arg[1].equals("text_formatter")) {
+                } else if (arg[1].equals("text_formatter")) {
                     StringUtil.copyPartialMatches(arg[2], Arrays.asList("info", "help"), completions);
+                } else if (arg[1].equals("server_functions")) {
+                    StringUtil.copyPartialMatches(arg[2], Arrays.asList("info", "storage", "reload", "help"), completions);
                 }
             }
         }

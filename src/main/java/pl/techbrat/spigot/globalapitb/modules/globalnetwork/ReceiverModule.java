@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ReceiverModule {
 
-    private final GlobalAPITB plugin;
+    private final GlobalAPITB plugin = GlobalAPITB.getPlugin();
 
     private BukkitTask task;
 
@@ -25,7 +25,6 @@ public class ReceiverModule {
 
     ReceiverModule(int port) {
         this.port = port;
-        this.plugin = GlobalAPITB.getPlugin();
         server();
     }
 

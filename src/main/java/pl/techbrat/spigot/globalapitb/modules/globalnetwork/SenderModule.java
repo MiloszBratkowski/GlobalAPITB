@@ -8,14 +8,9 @@ import java.io.OutputStream;
 import java.net.Socket;
 
 public class SenderModule {
-    private GlobalAPITB plugin;
-
+    private final GlobalAPITB plugin = GlobalAPITB.getPlugin();
 
     private Socket socket;
-
-    SenderModule() {
-        this.plugin = GlobalAPITB.getPlugin();
-    }
 
     public void sendData(DataPacket data, ServerReceiver serverReceiver) {
         try {

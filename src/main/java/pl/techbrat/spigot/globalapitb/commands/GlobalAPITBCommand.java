@@ -48,10 +48,19 @@ public class GlobalAPITBCommand implements CommandExecutor {
                     else if (module.getName().equals("server_functions")) {
                         ServerFunctions serverFunctions = (ServerFunctions) module;
                         if (arg.length >= 3) {
-                            if (arg[2].equals("info")) {
-                                serverFunctions.getCommands().info(sender);
-                            } else {
-                                serverFunctions.getCommands().help(sender, s);
+                            switch (arg[2]) {
+                                case "info":
+                                    serverFunctions.getCommands().info(sender);
+                                    break;
+                                case "storage":
+                                    serverFunctions.getCommands().storage(sender);
+                                    break;
+                                case "reload":
+                                    serverFunctions.getCommands().reload(sender);
+                                    break;
+                                default:
+                                    serverFunctions.getCommands().help(sender, s);
+                                    break;
                             }
                         } else {
                             serverFunctions.getCommands().help(sender, s);

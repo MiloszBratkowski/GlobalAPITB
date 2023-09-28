@@ -87,6 +87,10 @@ public class ModuleConfig {
         return (Float) getReliabilityConfig(path);
     }
 
+    public Boolean getConfigBoolean(String path) {
+        return (Boolean) getReliabilityConfig(path);
+    }
+
     public List<String> getConfigList(String path) {
         return (List<String>) getReliabilityConfig(path);
     }

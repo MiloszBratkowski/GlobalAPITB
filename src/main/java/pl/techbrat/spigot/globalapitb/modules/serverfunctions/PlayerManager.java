@@ -34,14 +34,20 @@ public class PlayerManager {
         playerDataList.put((use_uuid?uuid:nickname), new PlayerData(uuid, nickname, new Date(), new Date(), 0, 0));
     }
 
-    public void updatePlayerData(OfflinePlayer player) {
+    public void downloadPlayerData(OfflinePlayer player) {
         registerPlayerData(player.getUniqueId().toString(), player.getName());
     }
-    public void updatePlayerData(String uuid, String nickname) {
+    public void downloadPlayerData(String uuid, String nickname) {
         ResultSet resultSet = module.getServerSaver().getStorage().query("SELECT * FROM %prefix%all_players%suffix% WHERE "+(use_uuid?"player_uuid = '"+uuid+"'":"player_name = '"+nickname+"'")+";");
         try {
             if (resultSet.next()) {
-
+                getPlayerData(use_uuid?uuid:nickname).updatePlayerData(
+                        resultSet.getString("player_uuid"),
+                        resultSet.getString("player_name"),
+                        resultSet.getString("player_uuid"),
+                        resultSet.getString("player_uuid"),
+                        resultSet.getString("player_uuid")
+                );
             }
         } catch (SQLException e) {
             e.printStackTrace();

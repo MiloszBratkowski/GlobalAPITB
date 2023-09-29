@@ -25,6 +25,15 @@ public class PlayerData {
         this.join_time = join_time;
     }
 
+    public void downloadPlayerData() {
+        this.uuid = uuid;
+        this.nickname = nickname;
+        this.first_join = first_join;
+        this.last_join = last_join;
+        this.join_count = join_count;
+        this.join_time = join_time;
+    }
+
     public @Nullable OfflinePlayer getOfflinePlayer() {
         return Bukkit.getOfflinePlayer(UUID.fromString(uuid));
     }

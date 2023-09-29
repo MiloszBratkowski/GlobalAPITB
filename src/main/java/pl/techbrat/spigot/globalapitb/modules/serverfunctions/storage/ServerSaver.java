@@ -3,11 +3,8 @@ package pl.techbrat.spigot.globalapitb.modules.serverfunctions.storage;
 import com.sun.istack.internal.Nullable;
 import pl.techbrat.spigot.globalapitb.GlobalAPITB;
 import pl.techbrat.spigot.globalapitb.modules.ModuleConfig;
-import pl.techbrat.spigot.globalapitb.modules.serverfunctions.storage.MySQLDatabase;
-import pl.techbrat.spigot.globalapitb.modules.serverfunctions.storage.SQLiteDatabase;
-import pl.techbrat.spigot.globalapitb.modules.serverfunctions.storage.Storage;
-
-import java.sql.SQLException;
+import pl.techbrat.spigot.globalapitb.modules.serverfunctions.ServerFunctions;
+import pl.techbrat.spigot.globalapitb.modules.serverfunctions.ServerMethods;
 
 public class ServerSaver {
 
@@ -15,7 +12,7 @@ public class ServerSaver {
 
     private Storage storage;
 
-    public ServerSaver(ModuleConfig config) {
+    public ServerSaver(ServerFunctions module, ModuleConfig config) {
         String type = config.getConfigString("storage_type");
         if (type.equalsIgnoreCase("SQLITE")) {
             storage = new SQLiteDatabase(
@@ -37,7 +34,7 @@ public class ServerSaver {
         } else {
             plugin.getLogger().severe("Wrong storage type - "+type+"! Change type to sqlite or mysql and reload server or plugin (/gapi reload).");
             plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
-                plugin.getModulesManager().close(plugin.getModulesManager().getModule("server_functions"));
+                plugin.getModulesManager().close(module);
             }, 5);
             return;
         }

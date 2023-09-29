@@ -65,7 +65,7 @@ public class Storage {
     public ResultSet query(String query) {
         try {
             if (connection == null || statement == null || connection.isClosed() || statement.isClosed()) connect();
-            return statement.executeQuery(query);
+            return statement.executeQuery(query.replaceAll("%prefix%", table_prefix).replaceAll("%suffix%", table_suffix));
         } catch (SQLException e) {
             plugin.getLogger().severe("Database executing query error.");
             e.printStackTrace();

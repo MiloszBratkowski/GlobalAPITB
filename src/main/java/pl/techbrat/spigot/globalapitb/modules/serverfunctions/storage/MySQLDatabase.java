@@ -2,10 +2,7 @@ package pl.techbrat.spigot.globalapitb.modules.serverfunctions.storage;
 
 import com.sun.istack.internal.Nullable;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Arrays;
 
 public class MySQLDatabase extends Storage {

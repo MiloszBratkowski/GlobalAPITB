@@ -3,6 +3,8 @@
 # To check how to use these functions, go here:
 # https://github.com/MiloszBratkowski/GlobalAPITB
 
+use_uuid: false
+
 storage_type: mysql
 
 table_prefix: ""

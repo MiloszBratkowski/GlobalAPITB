@@ -8,6 +8,7 @@ public class ServerFunctions extends Module {
     private BasicMethods basicMethods;
     private ServerMethods serverMethods;
     private ServerSaver serverSaver;
+    private PlayerManager playerManager;
 
     private final ServerFunctionsCommands commands;
     public ServerFunctions() {
@@ -29,6 +30,10 @@ public class ServerFunctions extends Module {
         return serverSaver;
     }
 
+    public PlayerManager getPlayerManager() {
+        return playerManager;
+    }
+
     public ServerFunctionsCommands getCommands() {
         return commands;
     }
@@ -44,8 +49,9 @@ public class ServerFunctions extends Module {
         super.reload();
         if (serverSaver != null) serverSaver.close();
 
-        basicMethods = new BasicMethods();
-        serverMethods = new ServerMethods();
-        serverSaver = new ServerSaver(getConfig());
+        basicMethods = new BasicMethods(this);
+        serverMethods = new ServerMethods(this);
+        serverSaver = new ServerSaver(this, getConfig());
+        playerManager = new PlayerManager(this, getConfig().getConfigBoolean("use_uuid"));
     }
 }

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Storage {
@@ -76,7 +77,7 @@ public class Storage {
     public void update(String query) {
         try {
             if (connection == null || statement == null || connection.isClosed() || statement.isClosed()) connect();
-            statement.executeUpdate(query);
+            statement.executeUpdate(query.replaceAll("%prefix%", table_prefix).replaceAll("%suffix%", table_suffix));
         } catch (SQLException e) {
             plugin.getLogger().severe("Database executing query error.");
             e.printStackTrace();
@@ -88,7 +89,7 @@ public class Storage {
             if (connection != null && statement != null && !connection.isClosed() && !statement.isClosed()) {
                 File file = new File(plugin.getDataFolder() + "/modules/table.temp");
                 Files.copy(resource, file.toPath());
-                String query = String.join(" ", Files.readAllLines(file.toPath())).replaceAll("all_players", table_prefix + "all_players" + table_suffix);
+                String query = String.join(" ", Files.readAllLines(file.toPath()));
                 file.delete();
                 update(query);
             }
@@ -102,6 +103,29 @@ public class Storage {
             plugin.getLogger().severe("Database isn't connected!");
             e.printStackTrace();
         }
+    }
+
+    public ResultSet downloadPlayerData(String identification) {
+        return query("SELECT * FROM %prefix%all_players%suffix% WHERE "+identification+";");
+    }
+
+    public void insertPlayerData(ArrayList<String> values) {
+        update("INSERT INTO %prefix%all_players%suffix% VALUES (NULL, '"+values.get(0)+"', '"+values.get(1)+"', "+values.get(2)+", "+values.get(3)+", "+values.get(4)+", "+values.get(5)+");");
+    }
+
+    public void updatePlayerData(String identification, ArrayList<String> values) {
+        update("UPDATE %prefix%all_players%suffix% SET "+
+                "player_uuid = '"+values.get(0)+"', "+
+                "player_name = '"+values.get(1)+"', "+
+                "first_join = "+values.get(2)+", "+
+                "last_join = "+values.get(3)+", "+
+                "join_count = "+values.get(4)+", "+
+                "join_time = "+values.get(5)+
+                " WHERE "+identification+";");
+    }
+
+    public void deletePlayerData(ArrayList<String> values) {
+        update("DELETE FROM %prefix%all_players%suffix% WHERE player_uuid = '"+values.get(0)+"' AND player_name = '"+values.get(1)+"';");
     }
 
     public String getType() {

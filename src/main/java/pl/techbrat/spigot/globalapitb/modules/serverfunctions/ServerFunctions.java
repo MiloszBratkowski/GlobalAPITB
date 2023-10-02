@@ -9,7 +9,6 @@ public class ServerFunctions extends Module {
     private ServerMethods serverMethods;
     private ServerSaver serverSaver;
     private PlayerManager playerManager;
-
     private final ServerFunctionsCommands commands;
     public ServerFunctions() {
         super("server_functions");
@@ -41,6 +40,7 @@ public class ServerFunctions extends Module {
     @Override
     protected void close() {
         super.close();
+        playerManager.close();
         serverSaver.close();
     }
 

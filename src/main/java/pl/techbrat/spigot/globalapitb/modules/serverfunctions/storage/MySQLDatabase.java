@@ -3,6 +3,7 @@ package pl.techbrat.spigot.globalapitb.modules.serverfunctions.storage;
 import com.sun.istack.internal.Nullable;
 
 import java.io.InputStream;
+import java.sql.ResultSet;
 import java.util.Arrays;
 
 public class MySQLDatabase extends Storage {
@@ -28,5 +29,10 @@ public class MySQLDatabase extends Storage {
     @Override
     protected void createTable(@Nullable InputStream resource) {
         super.createTable(plugin.getResource("storage/mysql_players_create.sql"));
+    }
+
+    @Override
+    public ResultSet downloadPlayerData(String identification) {
+        return null;
     }
 }

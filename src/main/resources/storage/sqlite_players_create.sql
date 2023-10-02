@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS "all_players" (
+CREATE TABLE IF NOT EXISTS "%prefix%all_players%suffix%" (
 	"id"	INTEGER NOT NULL UNIQUE,
 	"player_name"	TEXT NOT NULL,
 	"player_uuid"	TEXT NOT NULL,

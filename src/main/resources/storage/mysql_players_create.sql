@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `all_players` (
+CREATE TABLE IF NOT EXISTS `%prefix%all_players%suffix%` (
 `id` INT NOT NULL AUTO_INCREMENT ,
 `player_name` VARCHAR(32) NOT NULL ,
 `player_uuid` CHAR(32) NOT NULL ,

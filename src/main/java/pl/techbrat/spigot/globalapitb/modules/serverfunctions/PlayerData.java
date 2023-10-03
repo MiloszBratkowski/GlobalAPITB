@@ -59,7 +59,7 @@ public class PlayerData {
     }
 
     public long getJoinTime() {
-        if (isOnline()) return join_time + new Date().getTime() - last_join.getTime()/1000;
+        if (isOnline()) return join_time + new Date().getTime()/1000 - last_join.getTime()/1000;
         return join_time;
     }
 

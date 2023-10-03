@@ -3,6 +3,7 @@ package pl.techbrat.spigot.globalapitb.modules.serverfunctions;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -71,7 +72,7 @@ public class PlayerManager implements Listener {
             }
             ResultSet resultSet = module.getServerSaver().getStorage().downloadPlayerData(getSQLIdentification(uuid, nickname));
 
-            if (resultSet.next()) {
+            if (resultSet != null && resultSet.next()) {
                 playerData.setPlayerData(
                         resultSet.getString("player_uuid"),
                         resultSet.getString("player_name"),
@@ -84,8 +85,8 @@ public class PlayerManager implements Listener {
                 module.getServerSaver().getStorage().insertPlayerData(new ArrayList<>(Arrays.asList(
                         playerData.getUuid(),
                         playerData.getNickname(),
-                        String.valueOf(playerData.getFirstJoin().getTime()),
-                        String.valueOf(playerData.getLastJoin().getTime()),
+                        String.valueOf(playerData.getFirstJoin().getTime()/1000),
+                        String.valueOf(playerData.getLastJoin().getTime()/1000),
                         String.valueOf(playerData.getJoinCount()),
                         String.valueOf(playerData.getJoinTime()))
                 ));
@@ -104,8 +105,8 @@ public class PlayerManager implements Listener {
         module.getServerSaver().getStorage().updatePlayerData(getSQLIdentification(uuid, nickname), new ArrayList<>(Arrays.asList(
                 playerData.getUuid(),
                 playerData.getNickname(),
-                String.valueOf(playerData.getFirstJoin().getTime()),
-                String.valueOf(playerData.getLastJoin().getTime()),
+                String.valueOf(playerData.getFirstJoin().getTime()/1000),
+                String.valueOf(playerData.getLastJoin().getTime()/1000),
                 String.valueOf(playerData.getJoinCount()),
                 String.valueOf(playerData.getJoinTime()))
         ));
@@ -125,13 +126,19 @@ public class PlayerManager implements Listener {
     }
 
     public void close() {
-        for (String playerId : playerDataList.keySet()) {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            if (playerDataList.containsKey((use_uuid?player.getUniqueId().toString():player.getName()))) {
+                updatePlayerData(player);
+            }
+        }
+        for (String playerId : new ArrayList<>(playerDataList.keySet())){
             unregisterPlayerData(use_uuid?playerId:null, use_uuid?null:playerId);
         }
         PlayerJoinEvent.getHandlerList().unregister(this);
         PlayerQuitEvent.getHandlerList().unregister(this);
     }
 
+    @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         downloadPlayerData(event.getPlayer());
 
@@ -141,6 +148,7 @@ public class PlayerManager implements Listener {
         updatePlayerData(event.getPlayer());
     }
 
+    @EventHandler
     public void onPlayerLeave(PlayerQuitEvent event) {
         updatePlayerData(event.getPlayer());
     }

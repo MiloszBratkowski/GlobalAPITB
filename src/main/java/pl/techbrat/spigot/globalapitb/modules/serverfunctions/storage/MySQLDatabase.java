@@ -30,9 +30,4 @@ public class MySQLDatabase extends Storage {
     protected void createTable(@Nullable InputStream resource) {
         super.createTable(plugin.getResource("storage/mysql_players_create.sql"));
     }
-
-    @Override
-    public ResultSet downloadPlayerData(String identification) {
-        return null;
-    }
 }

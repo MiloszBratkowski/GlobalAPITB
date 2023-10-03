@@ -65,7 +65,7 @@ public class ModuleConfig {
             plugin.getLogger().warning("Can't find '"+value+"' in modules/"+moduleName+".yml!");
             plugin.getLogger().warning("Default value has been got! ("+defaultConfig.get(value)+")");
             plugin.getLogger().warning("To set that option, config file must be recreated!");
-            plugin.getLogger().warning("Paste manually new structures or delete modules"+moduleName+".yml to auto recreate!");
+            plugin.getLogger().warning("Paste manually new structures or delete modules/"+moduleName+".yml to auto recreate!");
             plugin.getLogger().warning("");
             return defaultConfig.get(value);
         }

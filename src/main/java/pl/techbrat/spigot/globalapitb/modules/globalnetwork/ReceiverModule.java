@@ -17,7 +17,7 @@ public class ReceiverModule {
 
     private BukkitTask task;
 
-    private final List<ReceiverListener> listeners = new ArrayList<ReceiverListener>();
+    private final List<ReceiverListener> listeners = new ArrayList<>();
 
     private final int port;
 

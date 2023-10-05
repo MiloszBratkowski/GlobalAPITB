@@ -30,4 +30,28 @@ public class MySQLDatabase extends Storage {
     protected void createTable(@Nullable InputStream resource) {
         super.createTable(plugin.getResource("storage/mysql_players_create.sql"));
     }
+
+    public String getHost() {
+        return host;
+    }
+
+    public Integer getPort() {
+        return port;
+    }
+
+    public Boolean getSsl() {
+        return ssl;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getDatabase() {
+        return database;
+    }
+
+    public String getUser() {
+        return user;
+    }
 }

@@ -1,7 +1,5 @@
 package pl.techbrat.spigot.globalapitb.modules;
 
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
 import pl.techbrat.spigot.globalapitb.ConfigData;
 import pl.techbrat.spigot.globalapitb.GlobalAPITB;
 import pl.techbrat.spigot.globalapitb.modules.globalnetwork.GlobalNetwork;
@@ -9,7 +7,6 @@ import pl.techbrat.spigot.globalapitb.modules.serverfunctions.ServerFunctions;
 import pl.techbrat.spigot.globalapitb.modules.textformatter.TextFormatter;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class ModulesManager {
     private final GlobalAPITB plugin = GlobalAPITB.getPlugin();

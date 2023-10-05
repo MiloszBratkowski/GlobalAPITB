@@ -1,6 +1,5 @@
 package pl.techbrat.spigot.globalapitb.modules.globalnetwork;
 
-import pl.techbrat.spigot.globalapitb.GlobalAPITB;
 import pl.techbrat.spigot.globalapitb.modules.Module;
 
 public class GlobalNetwork extends Module {

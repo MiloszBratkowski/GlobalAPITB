@@ -3,7 +3,6 @@ package pl.techbrat.spigot.globalapitb.modules.serverfunctions.storage;
 import com.sun.istack.internal.Nullable;
 import pl.techbrat.spigot.globalapitb.GlobalAPITB;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 
@@ -20,5 +19,9 @@ public class SQLiteDatabase extends Storage {
     @Override
     protected void createTable(@Nullable InputStream resource) {
         super.createTable(plugin.getResource("storage/sqlite_players_create.sql"));
+    }
+
+    public String getFilename() {
+        return filename;
     }
 }

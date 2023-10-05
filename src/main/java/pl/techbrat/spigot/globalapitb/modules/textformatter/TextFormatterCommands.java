@@ -2,7 +2,6 @@ package pl.techbrat.spigot.globalapitb.modules.textformatter;
 
 import org.bukkit.command.CommandSender;
 import pl.techbrat.spigot.globalapitb.GlobalAPITB;
-import pl.techbrat.spigot.globalapitb.modules.globalnetwork.GlobalNetwork;
 
 public class TextFormatterCommands {
     private final GlobalAPITB plugin = GlobalAPITB.getPlugin();

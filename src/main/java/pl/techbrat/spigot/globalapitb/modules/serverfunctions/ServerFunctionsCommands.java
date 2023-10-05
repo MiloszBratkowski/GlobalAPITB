@@ -2,7 +2,6 @@ package pl.techbrat.spigot.globalapitb.modules.serverfunctions;
 
 import org.bukkit.command.CommandSender;
 import pl.techbrat.spigot.globalapitb.GlobalAPITB;
-import pl.techbrat.spigot.globalapitb.modules.globalnetwork.GlobalNetwork;
 
 public class ServerFunctionsCommands {
     private final GlobalAPITB plugin = GlobalAPITB.getPlugin();

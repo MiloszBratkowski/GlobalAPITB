@@ -1,7 +1,6 @@
 package pl.techbrat.spigot.globalapitb.modules.globalnetwork;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Set;
 
 public class ServerReceiver {
@@ -15,9 +14,9 @@ public class ServerReceiver {
         return serverslist.keySet();
     }
 
-    private String name;
-    private String host;
-    private int port;
+    private final String name;
+    private final String host;
+    private final int port;
 
     ServerReceiver(String name, String host, int port) {
         this.name = name;

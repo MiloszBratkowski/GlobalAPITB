@@ -32,7 +32,7 @@ public class PlayerManager implements Listener {
             downloadPlayerData(player);
         }
 
-        Bukkit.getPluginManager().registerEvents(this, GlobalAPITB.getPlugin());
+        Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
     public PlayerData getPlayerData(OfflinePlayer player) {

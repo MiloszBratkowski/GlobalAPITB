@@ -1,6 +1,5 @@
 package pl.techbrat.spigot.globalapitb.modules.serverfunctions.storage;
 
-import org.bukkit.Bukkit;
 import pl.techbrat.spigot.globalapitb.GlobalAPITB;
 
 import java.io.File;
@@ -14,12 +13,12 @@ import java.util.List;
 public class Storage {
     final GlobalAPITB plugin = GlobalAPITB.getPlugin();
 
-    private String type;
-    private String className;
-    private String url;
-    private List<String> params;
-    private String table_prefix;
-    private String table_suffix;
+    private final String type;
+    private final String className;
+    private final String url;
+    private final List<String> params;
+    private final String table_prefix;
+    private final String table_suffix;
 
     private Connection connection;
     private Statement statement;
@@ -42,9 +41,7 @@ public class Storage {
             statement = connection.createStatement();
         } catch (SQLException e) {
             plugin.getLogger().severe("Database connection error, maybe was disconnected or typed wrong parameters.");
-            plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
-                plugin.getModulesManager().close(plugin.getModulesManager().getModule("server_functions"));
-            }, 5);
+            plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> plugin.getModulesManager().close(plugin.getModulesManager().getModule("server_functions")), 5);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -97,9 +94,8 @@ public class Storage {
         } catch (IOException e) {
             plugin.getLogger().severe("Copying table creating sql query error.");
             e.printStackTrace();
-            plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
-                plugin.getModulesManager().close(plugin.getModulesManager().getModule("server_functions"));
-            }, 5);
+            plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin,
+                    () -> plugin.getModulesManager().close(plugin.getModulesManager().getModule("server_functions")), 5);
         } catch (SQLException e) {
             plugin.getLogger().severe("Database isn't connected!");
             e.printStackTrace();

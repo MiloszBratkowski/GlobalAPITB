@@ -1,16 +1,14 @@
 package pl.techbrat.spigot.globalapitb.modules.textformatter;
 
 import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 
 import java.awt.*;
 import java.lang.reflect.Field;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class ColorFormatter {
-    private final Pattern HEX_PATTERN = Pattern.compile("&#([A-Fa-f0-9]{6})");;
+public class ColorFormatter {
+    private final Pattern HEX_PATTERN = Pattern.compile("&#([A-Fa-f0-9]{6})");
     public String hexToColor(final String message) {
         final char colorChar = ChatColor.COLOR_CHAR;
 
@@ -40,11 +38,10 @@ class ColorFormatter {
         }
         StringBuilder newMessage = new StringBuilder();
         if (message.contains("&")) {
-            boolean first = false;
-            if (message.startsWith("&")) first = true;
-            String words[] = message.split("&");
+            boolean first = message.startsWith("&");
+            String[] words = message.split("&");
             for (int i = 0; i < words.length; i++) {
-                if ((i != 0 || first) && words[i].length()>0) {
+                if ((i != 0 || first) && !words[i].isEmpty()) {
                     if (words[i].startsWith("#")) words[i] = words[i].substring(7);
                     else words[i] = words[i].substring(1);
                 }

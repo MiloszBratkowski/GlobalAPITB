@@ -8,7 +8,6 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Level;
 
 public class ModuleConfig {
     private static final GlobalAPITB plugin = GlobalAPITB.getPlugin();
@@ -16,7 +15,7 @@ public class ModuleConfig {
     private static final File modulesDirectory = new File(plugin.getDataFolder()+"/modules");
     private File moduleConfigFile;
 
-    private String moduleName;
+    private final String moduleName;
 
     private final HashMap<String, Object> defaultConfig;
     private final HashMap<String, Object> config;

@@ -19,10 +19,10 @@ where more complex systems are required.
 
 
 ## Available modules
-| Module name     | Module label     | Since version | Description                                                                                                                     |
-|-----------------|------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------|
-| Global Network  | global_network   | 1.0v          | Communication between servers without proxy server.More useful than BungeeChannel messaging.                                    |
-| ServerFunctions | server_functions | 1.0v          | Many additional features make it easy to add functionality in external plugins. More detailed offline player saving in database. |
-| Text Formatter  | text_formatter   | 1.0v          | Additional functions to facilitate text formatting in Bukkit (e.g. colors).                                                       |
+| Module name      | Module label     | Since version | Description                                                                                                                      |
+|------------------|------------------|---------------|----------------------------------------------------------------------------------------------------------------------------------|
+| Global Network   | global_network   | 1.0v          | Communication between servers without proxy server. More useful than BungeeChannel messaging.                                    |
+| Server Functions | server_functions | 1.0v          | Many additional features make it easy to add functionality in external plugins. More detailed offline player saving in database. |
+| Text Formatter   | text_formatter   | 1.0v          | Additional functions to facilitate text formatting in Bukkit (e.g. colors).                                                      |
 
 ### **To check how to use methods go to Wiki.**

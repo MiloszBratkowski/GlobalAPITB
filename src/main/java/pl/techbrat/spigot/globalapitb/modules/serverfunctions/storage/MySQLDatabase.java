@@ -1,9 +1,8 @@
 package pl.techbrat.spigot.globalapitb.modules.serverfunctions.storage;
 
-import com.sun.istack.internal.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.InputStream;
-import java.sql.ResultSet;
 import java.util.Arrays;
 
 public class MySQLDatabase extends Storage {

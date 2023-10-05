@@ -1,6 +1,6 @@
 package pl.techbrat.spigot.globalapitb.modules.serverfunctions.storage;
 
-import com.sun.istack.internal.Nullable;
+import org.jetbrains.annotations.Nullable;
 import pl.techbrat.spigot.globalapitb.GlobalAPITB;
 import pl.techbrat.spigot.globalapitb.modules.ModuleConfig;
 import pl.techbrat.spigot.globalapitb.modules.serverfunctions.ServerFunctions;

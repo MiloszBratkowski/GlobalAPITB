@@ -1,8 +1,8 @@
 package pl.techbrat.spigot.globalapitb.modules.serverfunctions;
 
-import com.sun.istack.internal.Nullable;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Date;
 import java.util.UUID;

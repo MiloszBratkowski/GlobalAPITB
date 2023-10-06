@@ -3,6 +3,7 @@ package pl.techbrat.spigot.globalapitb;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
+import pl.techbrat.spigot.globalapitb.api.GlobalAPITBManager;
 import pl.techbrat.spigot.globalapitb.commands.GlobalAPITBCommand;
 import pl.techbrat.spigot.globalapitb.commands.GlobalAPITBTabCompleter;
 import pl.techbrat.spigot.globalapitb.modules.ModulesManager;
@@ -14,6 +15,8 @@ public final class GlobalAPITB extends JavaPlugin {
     private ModulesManager modulesManager;
     private ConfigData config;
 
+    private GlobalAPITBManager globalAPITBManager;
+
     @Override
     public void onEnable() {
         plugin = this;
@@ -24,6 +27,8 @@ public final class GlobalAPITB extends JavaPlugin {
 
         getCommand("globalapitb").setExecutor(new GlobalAPITBCommand());
         getCommand("globalapitb").setTabCompleter(new GlobalAPITBTabCompleter());
+
+        globalAPITBManager = new GlobalAPITBManager();
     }
 
     @Override
@@ -36,6 +41,7 @@ public final class GlobalAPITB extends JavaPlugin {
         modulesManager.closeAll();
         config = new ConfigData();
         modulesManager = new ModulesManager();
+        globalAPITBManager = new GlobalAPITBManager();
     }
 
     public ConfigData getConfiguration() {
@@ -58,8 +64,12 @@ public final class GlobalAPITB extends JavaPlugin {
         getServer().getPluginManager().disablePlugin(this);
     }
 
+    public GlobalAPITBManager getAPI() {
+        return globalAPITBManager;
+    }
 
     public static GlobalAPITB getPlugin() {
         return plugin;
     }
+
 }

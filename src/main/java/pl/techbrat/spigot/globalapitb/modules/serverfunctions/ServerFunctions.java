@@ -14,7 +14,6 @@ public class ServerFunctions extends Module {
         super("server_functions");
 
         commands = new ServerFunctionsCommands(this);
-
     }
 
     public BasicMethods getBasicMethods() {

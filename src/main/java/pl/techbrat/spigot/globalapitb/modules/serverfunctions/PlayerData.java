@@ -38,12 +38,16 @@ public class PlayerData {
         return offlinePlayer != null && offlinePlayer.isOnline();
     }
 
-    public int addJoinCount() {
-        return ++join_count;
+    public int addJoinCount(int amount) {
+        return join_count+=amount;
     }
 
     public int getJoinCount() {
         return join_count;
+    }
+
+    public void setFirstJoin(Date first_join) {
+        this.first_join = first_join;
     }
 
     public Date getFirstJoin() {
@@ -51,11 +55,19 @@ public class PlayerData {
     }
 
     public void setLastJoin() {
-        last_join = new Date();
+        setLastJoin(new Date());
+    }
+
+    public void setLastJoin(Date last_join) {
+        this.last_join = last_join;
     }
 
     public Date getLastJoin() {
         return last_join;
+    }
+
+    public void addJoinTime(long time) {
+        join_time+=time;
     }
 
     public long getJoinTime() {

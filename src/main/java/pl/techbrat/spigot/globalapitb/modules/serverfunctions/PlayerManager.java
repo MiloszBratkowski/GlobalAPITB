@@ -144,7 +144,7 @@ public class PlayerManager implements Listener {
 
         PlayerData playerData = getPlayerData(event.getPlayer());
         playerData.setLastJoin();
-        playerData.addJoinCount();
+        playerData.addJoinCount(1);
         updatePlayerData(event.getPlayer());
     }
 

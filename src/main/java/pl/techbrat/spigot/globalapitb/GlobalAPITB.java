@@ -7,9 +7,6 @@ import pl.techbrat.spigot.globalapitb.api.GlobalAPITBManager;
 import pl.techbrat.spigot.globalapitb.commands.GlobalAPITBCommand;
 import pl.techbrat.spigot.globalapitb.commands.GlobalAPITBTabCompleter;
 import pl.techbrat.spigot.globalapitb.modules.ModulesManager;
-import pl.techbrat.spigot.globalapitb.modules.globalnetwork.DataPacket;
-import pl.techbrat.spigot.globalapitb.modules.globalnetwork.GlobalNetwork;
-import pl.techbrat.spigot.globalapitb.modules.globalnetwork.ServerReceiver;
 
 public final class GlobalAPITB extends JavaPlugin {
 
@@ -32,9 +29,6 @@ public final class GlobalAPITB extends JavaPlugin {
         getCommand("globalapitb").setTabCompleter(new GlobalAPITBTabCompleter());
 
         globalAPITBManager = new GlobalAPITBManager();
-
-
-
     }
 
     @Override

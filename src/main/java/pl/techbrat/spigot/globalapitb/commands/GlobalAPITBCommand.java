@@ -10,8 +10,6 @@ import pl.techbrat.spigot.globalapitb.modules.globalnetwork.GlobalNetwork;
 import pl.techbrat.spigot.globalapitb.modules.serverfunctions.ServerFunctions;
 import pl.techbrat.spigot.globalapitb.modules.textformatter.TextFormatter;
 
-import java.util.stream.Collectors;
-
 public class GlobalAPITBCommand implements CommandExecutor {
     private final GlobalAPITB plugin = GlobalAPITB.getPlugin();
 

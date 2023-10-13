@@ -1,6 +1,7 @@
 package pl.techbrat.spigot.globalapitb.modules.textformatter;
 
-import net.md_5.bungee.api.ChatColor;
+
+import org.bukkit.ChatColor;
 
 import java.awt.*;
 import java.lang.reflect.Field;
@@ -50,7 +51,8 @@ public class ColorFormatter {
         } else {
             newMessage = new StringBuilder(message);
         }
-        return newMessage.toString();
+        return
+                ChatColor.stripColor(newMessage.toString());
     }
 
     public Color getColor(String colorName) {

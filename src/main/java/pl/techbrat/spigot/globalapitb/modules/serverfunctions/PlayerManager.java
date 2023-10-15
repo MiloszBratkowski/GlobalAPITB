@@ -36,10 +36,10 @@ public class PlayerManager implements Listener {
     }
 
     public PlayerData getPlayerData(OfflinePlayer player) {
-        return getPlayerData(use_uuid?player.getUniqueId().toString():player.getName());
+        return getPlayerData(player.getUniqueId().toString(), player.getName());
     }
-    public PlayerData getPlayerData(String identification) {
-        return playerDataList.get(identification);
+    public PlayerData getPlayerData(String uuid, String nickname) {
+        return playerDataList.get(use_uuid?uuid:nickname);
     }
 
     public PlayerData registerPlayerData(OfflinePlayer player) {
@@ -66,7 +66,7 @@ public class PlayerManager implements Listener {
 
     public void downloadPlayerData(String uuid, String nickname) {
         try {
-            PlayerData playerData = getPlayerData(use_uuid?uuid:nickname);
+            PlayerData playerData = getPlayerData(uuid, nickname);
             if (playerData == null) {
                 playerData = registerPlayerData(uuid, nickname);
             }
@@ -101,7 +101,7 @@ public class PlayerManager implements Listener {
     }
 
     public void updatePlayerData(String uuid, String nickname) {
-        PlayerData playerData = getPlayerData(use_uuid?uuid:nickname);
+        PlayerData playerData = getPlayerData(uuid, nickname);
         module.getServerSaver().getStorage().updatePlayerData(getSQLIdentification(uuid, nickname), new ArrayList<>(Arrays.asList(
                 playerData.getUuid(),
                 playerData.getNickname(),

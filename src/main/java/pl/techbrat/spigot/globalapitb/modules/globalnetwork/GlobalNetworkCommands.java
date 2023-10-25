@@ -12,9 +12,9 @@ public class GlobalNetworkCommands {
     }
     public void info(CommandSender sender, String aliasCmd) {
         plugin.sendMessage(false, sender, "");
-        plugin.sendMessage(true, sender, "&7Module &3Global Network &7configuration:");
-        plugin.sendMessage(false, sender, "&7Server is receiving packets on port: &3"+globalNetwork.getConfig().getConfigInt("global_network_server_port"));
-        plugin.sendMessage(false, sender, "&7All assigned servers:");
+        plugin.sendMessage(true, sender, "&7Module &3Global Network &8(v"+GlobalNetwork.getVersion()+") &7configuration:");
+        plugin.sendMessage(false, sender, "&7Server is receiving packets &8(v"+ReceiverModule.getVersion()+") &7on port: &3"+globalNetwork.getConfig().getConfigInt("global_network_server_port"));
+        plugin.sendMessage(false, sender, "&7All assigned servers: &8(v"+SenderModule.getVersion()+")");
         for (String server : globalNetwork.getConfig().getConfigList("server_list")) {
             plugin.sendMessage(false, sender, "  &7- &3"+server);
         }

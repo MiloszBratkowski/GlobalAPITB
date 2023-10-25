@@ -53,4 +53,10 @@ public class ServerFunctions extends Module {
         serverSaver = new ServerSaver(this, getConfig());
         playerManager = new PlayerManager(this, getConfig().getConfigBoolean("use_uuid"));
     }
+
+    private final static String VERSION = "1.0";
+
+    public static String getVersion() {
+        return VERSION;
+    }
 }

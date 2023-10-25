@@ -7,7 +7,15 @@ import pl.techbrat.spigot.globalapitb.GlobalAPITB;
 import pl.techbrat.spigot.globalapitb.modules.Module;
 import pl.techbrat.spigot.globalapitb.modules.ModulesManager;
 import pl.techbrat.spigot.globalapitb.modules.globalnetwork.GlobalNetwork;
+import pl.techbrat.spigot.globalapitb.modules.globalnetwork.ReceiverModule;
+import pl.techbrat.spigot.globalapitb.modules.globalnetwork.SenderModule;
+import pl.techbrat.spigot.globalapitb.modules.serverfunctions.BasicMethods;
+import pl.techbrat.spigot.globalapitb.modules.serverfunctions.PlayerManager;
 import pl.techbrat.spigot.globalapitb.modules.serverfunctions.ServerFunctions;
+import pl.techbrat.spigot.globalapitb.modules.serverfunctions.ServerMethods;
+import pl.techbrat.spigot.globalapitb.modules.serverfunctions.storage.ServerSaver;
+import pl.techbrat.spigot.globalapitb.modules.textformatter.ColorFormatter;
+import pl.techbrat.spigot.globalapitb.modules.textformatter.InteractiveMessage;
 import pl.techbrat.spigot.globalapitb.modules.textformatter.TextFormatter;
 
 public class GlobalAPITBCommand implements CommandExecutor {
@@ -84,6 +92,10 @@ public class GlobalAPITBCommand implements CommandExecutor {
             }
         } else if (arg[0].equals("reload")) {
             reload(sender);
+        } else if (arg[0].equals("versions")) {
+            versions(sender);
+        } else if (arg[0].equals("list")) {
+            listModules(sender);
         }
         return true;
     }
@@ -92,6 +104,8 @@ public class GlobalAPITBCommand implements CommandExecutor {
         plugin.sendMessage(false, sender, "");
         plugin.sendMessage(true, sender, "&7All plugin commands:");
         plugin.sendMessage(false, sender, " &3/"+aliasCmd+" module &7- modules commands.");
+        plugin.sendMessage(false, sender, " &3/"+aliasCmd+" list &7-  list all modules and display them status.");
+        plugin.sendMessage(false, sender, " &3/"+aliasCmd+" versions &7- list all modules with submodules and them versions.");
         plugin.sendMessage(false, sender, " &3/"+aliasCmd+" reload &7- reload plugin.");
         plugin.sendMessage(false, sender, " &3/"+aliasCmd+" help &7- display all plugin commands.");
     }
@@ -111,11 +125,28 @@ public class GlobalAPITBCommand implements CommandExecutor {
         }
     }
 
+    private void versions(CommandSender sender) {
+        ModulesManager modulesManager = plugin.getModulesManager();
+        plugin.sendMessage(false, sender, "");
+        plugin.sendMessage(true, sender, "&7Modules tree with versions:");
+        plugin.sendMessage(false, sender, "  &7- &3GlobalNetwork &8(v"+GlobalNetwork.getVersion()+")&7:");
+        plugin.sendMessage(false, sender, "    &7- &3sending data &8(v"+SenderModule.getVersion()+")");
+        plugin.sendMessage(false, sender, "    &7- &3receiving data &8(v"+ ReceiverModule.getVersion()+")");
+        plugin.sendMessage(false, sender, "  &7- &3ServerFunctions &8(v"+ServerFunctions.getVersion()+")&7:");
+        plugin.sendMessage(false, sender, "    &7- &3PlayerManager &8(v"+ PlayerManager.getVersion()+")");
+        plugin.sendMessage(false, sender, "    &7- &3BasicMethods &8(v"+ BasicMethods.getVersion()+")");
+        plugin.sendMessage(false, sender, "    &7- &3ServerMethods &8(v"+ ServerMethods.getVersion()+")");
+        plugin.sendMessage(false, sender, "    &7- &3ServerSaver &8(v"+ ServerSaver.getVersion()+")");
+        plugin.sendMessage(false, sender, "  &7- &3TextFormatter &8(v"+TextFormatter.getVersion()+")&7:");
+        plugin.sendMessage(false, sender, "    &7- &3ColorFormatter &8(v"+ ColorFormatter.getVersion()+")");
+        plugin.sendMessage(false, sender, "    &7- &3InteractiveMessage &8(v"+ InteractiveMessage.getVersion()+")");
+        plugin.sendMessage(false, sender, "Plugin version: "+GlobalAPITB.getPlugin().getDescription().getVersion());
+    }
+
     private void helpModules(CommandSender sender, String aliasCmd) {
         plugin.sendMessage(false, sender, "");
         plugin.sendMessage(true, sender, "&7Module's commands:");
         plugin.sendMessage(false, sender, " &3/"+aliasCmd+" module &8<module name> &7- module's commands");
-        plugin.sendMessage(false, sender, " &3/"+aliasCmd+" module list &7- list all modules and them status.");
         plugin.sendMessage(false, sender, " &3/"+aliasCmd+" module help &7- display all commands.");
     }
 

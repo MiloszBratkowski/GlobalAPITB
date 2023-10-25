@@ -44,4 +44,11 @@ public class BasicMethods {
         return string.length() < prefix.length() ? false : string.regionMatches(true, 0, prefix, 0, prefix.length());
     }
 
+
+    private final static String VERSION = "1.0";
+
+    public static String getVersion() {
+        return VERSION;
+    }
+
 }

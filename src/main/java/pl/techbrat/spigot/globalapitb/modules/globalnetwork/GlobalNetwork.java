@@ -55,4 +55,11 @@ public class GlobalNetwork extends Module {
         sender.close();
         ServerReceiver.unregisterAll();
     }
+
+
+    private final static String VERSION = "1.0";
+
+    public static String getVersion() {
+        return VERSION;
+    }
 }

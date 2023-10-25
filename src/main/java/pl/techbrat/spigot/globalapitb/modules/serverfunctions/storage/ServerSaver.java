@@ -52,4 +52,11 @@ public class ServerSaver {
     public Storage getStorage() {
         return storage;
     }
+
+
+    private final static String VERSION = "1.0";
+
+    public static String getVersion() {
+        return VERSION;
+    }
 }

@@ -15,7 +15,8 @@ public class TextFormatterCommands {
 
     public void info(CommandSender sender) {
         plugin.sendMessage(false, sender, "");
-        plugin.sendMessage(true, sender, "&7Module &3Text Formatter&7's submodules:");
-        plugin.sendMessage(false, sender, "  &7- &3ColorFormatter");
+        plugin.sendMessage(true, sender, "&7Module &3Text Formatter&7's submodules: &8(v"+TextFormatter.getVersion()+")");
+        plugin.sendMessage(false, sender, "  &7- &3ColorFormatter &8(v"+ColorFormatter.getVersion()+")");
+        plugin.sendMessage(false, sender, "  &7- &3InteractiveMessage &8(v"+InteractiveMessage.getVersion()+")");
     }
 }

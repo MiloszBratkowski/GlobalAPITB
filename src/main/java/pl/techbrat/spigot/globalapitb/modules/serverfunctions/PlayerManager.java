@@ -152,4 +152,11 @@ public class PlayerManager implements Listener {
     public void onPlayerLeave(PlayerQuitEvent event) {
         updatePlayerData(event.getPlayer());
     }
+
+
+    private final static String VERSION = "1.0";
+
+    public static String getVersion() {
+        return VERSION;
+    }
 }

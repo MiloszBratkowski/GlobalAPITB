@@ -2,6 +2,7 @@ package pl.techbrat.spigot.globalapitb.modules.serverfunctions;
 
 import org.bukkit.command.CommandSender;
 import pl.techbrat.spigot.globalapitb.GlobalAPITB;
+import pl.techbrat.spigot.globalapitb.modules.serverfunctions.storage.ServerSaver;
 
 public class ServerFunctionsCommands {
     private final GlobalAPITB plugin = GlobalAPITB.getPlugin();
@@ -23,10 +24,11 @@ public class ServerFunctionsCommands {
 
     public void info(CommandSender sender) {
         plugin.sendMessage(false, sender, "");
-        plugin.sendMessage(true, sender, "&7Module &3Server Functions&7's submodules:");
-        plugin.sendMessage(false, sender, "  &7- &3BasicMethods");
-        plugin.sendMessage(false, sender, "  &7- &3ServerMethods");
-        plugin.sendMessage(false, sender, "  &7- &3ServerSaver (storage)");
+        plugin.sendMessage(true, sender, "&7Module &3Server Functions&7's &8(v"+ServerFunctions.getVersion()+") &7submodules:");
+        plugin.sendMessage(false, sender, "  &7- &3BasicMethods &8(v"+BasicMethods.getVersion()+")");
+        plugin.sendMessage(false, sender, "  &7- &3ServerMethods &8(v"+ServerMethods.getVersion()+")");
+        plugin.sendMessage(false, sender, "  &7- &3PlayerManager &8(v"+PlayerManager.getVersion()+")");
+        plugin.sendMessage(false, sender, "  &7- &3ServerSaver (storage) &8(v"+ ServerSaver.getVersion()+")");
     }
 
     public void reload(CommandSender sender) {

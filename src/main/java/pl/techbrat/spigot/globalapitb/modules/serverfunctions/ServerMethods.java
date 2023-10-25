@@ -19,4 +19,9 @@ public class ServerMethods {
     }
 
 
+    private final static String VERSION = "1.0";
+
+    public static String getVersion() {
+        return VERSION;
+    }
 }

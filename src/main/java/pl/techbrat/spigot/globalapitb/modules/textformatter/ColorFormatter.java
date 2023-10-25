@@ -9,6 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ColorFormatter {
+
     private final Pattern HEX_PATTERN = Pattern.compile("&#([A-Fa-f0-9]{6})");
     public String hexToColor(final String message) {
         final char colorChar = ChatColor.COLOR_CHAR;
@@ -65,7 +66,9 @@ public class ColorFormatter {
     }
 
 
+    private final static String VERSION = "1.0";
 
-
-
+    public static String getVersion() {
+        return VERSION;
+    }
 }

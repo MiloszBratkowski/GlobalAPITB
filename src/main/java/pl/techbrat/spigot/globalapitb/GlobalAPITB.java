@@ -15,6 +15,8 @@ public final class GlobalAPITB extends JavaPlugin {
     private ModulesManager modulesManager;
     private ConfigData config;
 
+    private short mainIntVersion;
+
     private static GlobalAPITBManager globalAPITBManager;
 
     @Override
@@ -29,6 +31,8 @@ public final class GlobalAPITB extends JavaPlugin {
         getCommand("globalapitb").setTabCompleter(new GlobalAPITBTabCompleter());
 
         globalAPITBManager = new GlobalAPITBManager();
+
+        mainIntVersion = Short.parseShort(getServer().getBukkitVersion().split("\\.")[1].split("-")[0]);
     }
 
     @Override
@@ -70,6 +74,10 @@ public final class GlobalAPITB extends JavaPlugin {
 
     public static GlobalAPITB getPlugin() {
         return plugin;
+    }
+
+    public short getVersionSymbol() {
+        return mainIntVersion;
     }
 
 }

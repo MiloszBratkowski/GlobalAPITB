@@ -25,6 +25,6 @@ where more complex systems are required.
 |-------------------------------------------------------------------------------------------|------------------|----------------|----------------------------------------------------------------------------------------------------------------------------------|
 | [Global Network](https://github.com/MiloszBratkowski/GlobalAPITB/wiki/Global-Network)     | global_network   | v1.0           | Communication between servers without proxy server. More useful than BungeeChannel messaging.                                    |
 | [Server Functions](https://github.com/MiloszBratkowski/GlobalAPITB/wiki/Server-Functions) | server_functions | v1.0           | Many additional features make it easy to add functionality in external plugins. More detailed offline player saving in database. |
-| [Text Formatter](https://github.com/MiloszBratkowski/GlobalAPITB/wiki/Text-Formatter)     | text_formatter   | v1.0           | Additional functions to facilitate text formatting in Bukkit (e.g. colors).                                                      |
+| [Text Formatter](https://github.com/MiloszBratkowski/GlobalAPITB/wiki/Text-Formatter)     | text_formatter   | v1.0.1         | Additional functions to facilitate text formatting in Bukkit (e.g. colors).                                                      |
 
 ### **[To check how to use methods go to Wiki.](https://github.com/MiloszBratkowski/GlobalAPITB/wiki)**
